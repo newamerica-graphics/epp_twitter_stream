@@ -32,6 +32,7 @@
     "react-dom": "^16.5.0",
     "react-draggable": "^3.0.5",
     "react-table": "^6.8.6",
+    "react-twitter-embed": "^2.0.4",
     "topojson-client": "^3.0.0"
   },
   "devDependencies": {

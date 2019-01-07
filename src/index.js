@@ -1,28 +1,24 @@
-import './index.scss';
-
-let queue = [];
-let data = null;
+import "./index.scss";
+import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 const settings = {
-  'viz__id': (el) => {
-    // use data
+  twitter_stream: el => {
+    ReactDOM.render(
+      <div className="dv-twitter-embed">
+        <TwitterTimelineEmbed
+          sourceType="url"
+          url="https://twitter.com/NewAmericaEd/lists/negreg-livetweeting"
+          noHeader
+          options={{ height: 600 }}
+        />
+      </div>,
+      el
+    );
   }
 };
 
-fetch('endpoint').then(response => response.json()).then((_data)=>{
-  data = _data;
-  for(let i=0; i<queue.length; i++)
-    queue[i]();
-});
-
-window.renderDataViz = function(el){
-  let id = el.getAttribute('id');
+window.renderDataViz = function(el) {
+  let id = el.getAttribute("id");
   let chart = settings[id];
-  if(!chart) return;
-
-  if(data){
-    chart(el);
-  } else {
-    queue.push(() => chart(el));
-  }
-}
+  chart(el);
+};
